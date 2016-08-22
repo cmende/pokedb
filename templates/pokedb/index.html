@@ -1,0 +1,22 @@
+{% extends "pokedb/base_generic.html" %}
+
+{% load l10n %}
+
+{% block content %}
+<a href="{% url 'index' %}">Back to index</a>
+
+<table border=1>
+<tr>
+	<th><a href="?sort=timestamp">Timestamp</a></th>
+	<th><a href="?sort=spawnpoint">Spawnpoint</a></th>
+	<th><a href="?sort=pokemon">Pokemon</a></th>
+</tr>
+{% for spawn in spawns %}
+<tr>
+	<td>{{ spawn.timestamp }}</td>
+	<td><a href="{% url 'spawnpoint' spawn.spawnpoint.id %}">{{ spawn.spawnpoint }}</a> (<a href="https://www.google.com/maps/place/{{ spawn.spawnpoint.latitude|unlocalize }},{{ spawn.spawnpoint.longitude|unlocalize }}">Maps</a>)</td>
+	<td><a href="{% url 'pokemon' pokedex=spawn.pokemon.pokedex %}">{{ spawn.pokemon }}</a></td>
+</tr>
+{% endfor %}
+</table>
+{% endblock %}
