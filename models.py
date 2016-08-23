@@ -17,12 +17,16 @@ from django.db import models
 class Spawnpoint(models.Model):
     latitude = models.FloatField()
     longitude = models.FloatField()
+    name = models.CharField(max_length=255, blank=True)
 
     class Meta:
         unique_together = ('latitude', 'longitude',)
 
     def __str__(self):
-        return "{}, {}".format(self.latitude, self.longitude)
+        if self.name == "":
+            return "{}, {}".format(self.latitude, self.longitude)
+        else:
+            return self.name
 
 class Pokemon(models.Model):
     pokedex = models.IntegerField(primary_key=True)
