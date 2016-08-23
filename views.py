@@ -36,7 +36,7 @@ def index(request, pokedex=None, spawnpoint=None):
     else:
         spawns = Spawn.objects.all()
     spawns = spawns.order_by(sort)
-    return render(request, 'pokedb/index.html', {'spawns': spawns})
+    return render(request, 'pokedb/index.html', {'spawns': spawns, 'sort': sort})
 
 @login_required
 def import_spawns(request):
