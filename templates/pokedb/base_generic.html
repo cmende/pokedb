@@ -18,20 +18,17 @@
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-color--grey-100">
   <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
-	    <span class="mdl-layout-title">PokeDB</span>
+      <span class="mdl-layout-title">PokeDB</span>
       <div class="mdl-layout-spacer"></div>
-      <nav class="mdl-navigation">
-	      <a class="mdl-navigation__link" href="{% url 'index' %}">Index</a>
-	{% if user.is_authenticated %}
-        <a class="mdl-navigation__link" href="">Admin</a>
-	<a class="mdl-navigation__link" href="{% url 'import_spawns' %}">Import Spawns</a>
-	<a class="mdl-navigation__link" href="{% url 'import_pokemons' %}">Import Pokemons</a>
-	{% else %}
-        <a class="mdl-navigation__link" href="">Login</a>
-	{% endif %}
-	  </nav>
-	</div>
+      <div class="mdl-cell--hide-phone">
+        {% include "pokedb/navigation.html" %}
+      </div>
+    </div>
   </header>
+  <div class="mdl-layout__drawer">
+    <a class="mdl-layout-title">PokeDB</span>
+    {% include "pokedb/navigation.html" %}
+  </div>
   <main class="mdl-layout__content">
     {% block content %}{% endblock %}
   </main>
