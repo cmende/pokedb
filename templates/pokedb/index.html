@@ -8,7 +8,7 @@
 <table class="mdl-data-table mdl-js-data-table fill-width">
 <thead>
 <tr>
-	<th class="mdl-data-table__cell--non-numeric {% if sort == '-timestamp' %}mdl-data-table__header--sorted-descending{% endif %}"><a href="?sort=timestamp">Timestamp</a></th>
+	<th class="mdl-data-table__cell--non-numeric {% if sort == '-timestamp' %}mdl-data-table__header--sorted-descending{% endif %}"><a href="?sort=timestamp">Time</a></th>
 	<th class="mdl-data-table__cell--non-numeric {% if sort == 'spawnpoint' %}mdl-data-table__header--sorted-ascending{% endif %}"><a href="?sort=spawnpoint">Spawnpoint</a></th>
 	<th class="mdl-data-table__cell--non-numeric {% if sort == 'pokemon' %}mdl-data-table__header--sorted-ascending{% endif %}"><a href="?sort=pokemon">Pokemon</a></th>
 </tr>
@@ -16,8 +16,8 @@
 <tbody>
 {% for spawn in spawns %}
 <tr>
-	<td class="mdl-data-table__cell--non-numeric">{{ spawn.timestamp }}</td>
-	<td class="mdl-data-table__cell--non-numeric"><a href="{% url 'spawnpoint' spawn.spawnpoint.id %}">{{ spawn.spawnpoint }}</a> <a href="https://www.google.com/maps/place/{{ spawn.spawnpoint.latitude|unlocalize }},{{ spawn.spawnpoint.longitude|unlocalize }}"><i class="material-icons md-18">place</i></a></td>
+	<td class="mdl-data-table__cell--non-numeric">{{ spawn.timestamp|date:'j.n. G:i' }}</td>
+	<td class="mdl-data-table__cell--non-numeric"><a href="{% url 'spawnpoint' spawn.spawnpoint.id %}">{{ spawn.spawnpoint|truncatechars:20 }}</a> <a href="https://www.google.com/maps/place/{{ spawn.spawnpoint.latitude|unlocalize }},{{ spawn.spawnpoint.longitude|unlocalize }}"><i class="material-icons md-18">place</i></a></td>
 	<td class="mdl-data-table__cell--non-numeric"><a href="{% url 'pokemon' pokedex=spawn.pokemon.pokedex %}">{{ spawn.pokemon }}</a></td>
 </tr>
 {% endfor %}
