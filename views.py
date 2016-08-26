@@ -17,7 +17,7 @@ from datetime import datetime
 from io import StringIO
 
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import permission_required
 from django.db import transaction
 from django.http import HttpResponse
 from django.shortcuts import render
@@ -38,7 +38,7 @@ def index(request, pokedex=None, spawnpoint=None):
     spawns = spawns.order_by(sort)
     return render(request, 'pokedb/index.html', {'spawns': spawns, 'sort': sort})
 
-@login_required
+@permission_required('pokedb.add_spawn')
 def import_spawns(request):
     form = ImportForm(request.POST or None, request.FILES or None)
     if request.method == 'POST' and form.is_valid():
@@ -67,7 +67,7 @@ def handle_spawns_upload(f):
                 spawnpoint=spawnpoint, pokemon=pokemon)
 
 
-@login_required
+@permission_required('pokedb.add_pokemon')
 def import_pokemons(request):
     form = ImportForm(request.POST or None, request.FILES or None)
     if request.method == 'POST' and form.is_valid():

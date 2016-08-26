@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from django.conf.urls import patterns, url
+from django.conf.urls import patterns, url, include
 
 from . import views
 
@@ -22,4 +22,5 @@ urlpatterns = patterns('',
     url(r'^spawnpoint/(?P<spawnpoint>\d+)$', views.index, name='spawnpoint'),
     url(r'^import_spawns$', views.import_spawns, name='import_spawns'),
     url(r'^import_pokemons$', views.import_pokemons, name='import_pokemons'),
+    url('', include('django.contrib.auth.urls')),
 )
