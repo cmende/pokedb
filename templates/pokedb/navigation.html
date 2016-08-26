@@ -1,10 +1,11 @@
 <nav class="mdl-navigation">
 <a class="mdl-navigation__link" href="{% url 'index' %}">Index</a>
-{% if user.is_authenticated %}
+{% if user.is_staff %}
 <a class="mdl-navigation__link" href="{% url 'admin:index' %}">Admin</a>
 <a class="mdl-navigation__link" href="{% url 'import_spawns' %}">Import Spawns</a>
 <a class="mdl-navigation__link" href="{% url 'import_pokemons' %}">Import Pokemons</a>
-{% else %}
+{% endif %}
+{% if not user.is_authenticated %}
 <a class="mdl-navigation__link" href="">Login</a>
 {% endif %}
 </nav>
