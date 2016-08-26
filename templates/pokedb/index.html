@@ -17,7 +17,7 @@
 {% for spawn in spawns %}
 <tr>
 	<td class="mdl-data-table__cell--non-numeric">{{ spawn.timestamp|date:'j.n. G:i' }}</td>
-	<td class="mdl-data-table__cell--non-numeric"><a href="{% url 'spawnpoint' spawn.spawnpoint.id %}">{{ spawn.spawnpoint|truncatechars:20 }}</a> <a href="https://www.google.com/maps/place/{{ spawn.spawnpoint.latitude|unlocalize }},{{ spawn.spawnpoint.longitude|unlocalize }}"><i class="material-icons md-18">place</i></a></td>
+	<td class="mdl-data-table__cell--non-numeric"><a href="{% url 'spawnpoint' spawn.spawnpoint.id %}">{{ spawn.spawnpoint|truncatechars:20 }}</a> <a href="https://www.google.com/maps/place/{{ spawn.spawnpoint.latitude|unlocalize }},{{ spawn.spawnpoint.longitude|unlocalize }}" target="_blank"><i class="material-icons md-18">place</i></a></td>
 	<td class="mdl-data-table__cell--non-numeric"><a href="{% url 'pokemon' pokedex=spawn.pokemon.pokedex %}">{{ spawn.pokemon }}</a></td>
 </tr>
 {% endfor %}
